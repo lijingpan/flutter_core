@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_core/WeatherWidget.dart';
 
-
 //测试
-void main(){
+void main() {
   runApp(MaterialApp(
     title: '测试demo',
-   home: WeatherWidget(),
+    home: WeatherWidget(),
   ));
 }
 
@@ -70,8 +69,6 @@ void main(){
 //   }
 // }
 
-
- 
 // class Product{
 //   final String title;
 //   final String description;
@@ -115,7 +112,6 @@ void main(){
 
 // final Product product;
 // ProdeuctDetail({Key key,@required this.product}):super(key:key);
-
 
 //   @override
 //   Widget build(BuildContext context) {
