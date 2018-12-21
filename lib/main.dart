@@ -1,14 +1,402 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_core/WeatherWidget.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
+import 'dart:io';
+import 'package:flutter/services.dart';
 
 //测试
 void main() {
   runApp(MaterialApp(
     title: '测试demo',
-    home: WeatherWidget(),
+    home: FistPage(),
   ));
+
+  if (Platform.isAndroid) {
+// 以下两行 设置android状态栏为透明的沉浸。写在组件渲染之后，是为了在渲染后进行set赋值，覆盖状态栏，写在渲染之前MaterialApp组件会覆盖掉这个值。
+    SystemUiOverlayStyle systemUiOverlayStyle =
+        SystemUiOverlayStyle(statusBarColor: Colors.transparent);
+    SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+  }
 }
 
+class FistPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            TBanner(),
+            Home_Nav(),
+            Container(
+              child: Text(
+                "推荐车型",
+                style: new TextStyle(
+                  fontSize: 18.0, //字体大小
+                  fontWeight: FontWeight.bold, //字体粗细  粗体和正常
+                ),
+              ),
+            ),
+            RecomendCarWidget(),
+            Container(
+              child: Text(
+                "推荐活动",
+                style: new TextStyle(
+                  fontSize: 18.0, //字体大小
+                  fontWeight: FontWeight.bold, //字体粗细  粗体和正常
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class TBanner extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Stack(
+        children: [
+          new Container(
+              width: MediaQuery.of(context).size.width,
+              height: 200.0,
+              child: Swiper(
+                itemBuilder: _swiperBuilder,
+                itemCount: 3,
+                scrollDirection: Axis.horizontal,
+                autoplay: true,
+                onTap: (index) => print('点击了第$index个'),
+              )),
+          new Positioned(
+            left: 15.0,
+            top: 25.0,
+            child: new Opacity(
+              opacity: 0.5,
+              child: new Container(
+                child: Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: new EdgeInsets.fromLTRB(15.0, 0.0, 0.0, 0.0),
+                      child: new Text(
+                        "上海",
+                        style: new TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    new Image.asset(
+                      "images/down.png",
+                      width: 15,
+                      height: 15,
+                    )
+                  ],
+                ),
+                width: 70.0,
+                height: 30.0,
+                alignment: Alignment.center,
+                decoration: new BoxDecoration(
+                  borderRadius: new BorderRadius.all(new Radius.circular(18.0)),
+                  color: Colors.black, //Color.fromRGBO(0, 0, 0, .5),
+                ),
+              ),
+            ),
+          ),
+          new Positioned(
+            left: 20.0,
+            top: 175.0,
+            right: 20,
+            child: Material(
+              borderRadius: BorderRadius.circular(4.0),
+              elevation: 2.0,
+              child: Container(
+                height: 100.0,
+                padding: new EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Column(
+                        children: <Widget>[
+                          Image.asset(
+                            "images/rentshortdrive.png",
+                            height: 60.0,
+                            width: 60.0,
+                          ),
+                          Text("短租自驾", textAlign: TextAlign.center),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        children: <Widget>[
+                          Image.asset(
+                            "images/companiestorent.png",
+                            height: 60.0,
+                            width: 60.0,
+                          ),
+                          Text("企业长租"),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+      height: 280.0,
+    );
+  }
+
+  Widget _swiperBuilder(BuildContext context, int index) {
+    if (index == 0) {
+      return (Image.network(
+        "https://web-api.chesudi.com/img/ActivityBanner/a02bd350a318e7d037aa4bbbe0ea26.jpg",
+        fit: BoxFit.fill,
+      ));
+    } else {
+      return (Image.network(
+        "https://web-api.chesudi.com/img/ActivityBanner/4e4017f6ee2ce1a9290262174f719b.jpg",
+        fit: BoxFit.fill,
+      ));
+    }
+  }
+}
+
+class Home_Nav extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(0.0, 10.0, 10.0, 0.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.fromLTRB(10.0, 10.0, 0.0, 10.0),
+              child: Stack(
+                alignment: const FractionalOffset(0, 0.5),
+                children: <Widget>[
+                  Image.asset("images/index01.png"),
+                  Center(
+                    child: Text(
+                      "网约车",
+                      style: new TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: const Color(0xffffffff),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.fromLTRB(10.0, 10.0, 0.0, 10.0),
+              child: Stack(
+                alignment: const FractionalOffset(0, 0.5),
+                children: <Widget>[
+                  Image.asset("images/index02.png"),
+                  Center(
+                    child: Text(
+                      "个人长租",
+                      style: new TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: const Color(0xffffffff),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.fromLTRB(10.0, 10.0, 0.0, 10.0),
+              child: Stack(
+                alignment: const FractionalOffset(0, 0.5),
+                children: <Widget>[
+                  Image.asset("images/index03.png"),
+                  Center(
+                    child: Text(
+                      "优惠活动",
+                      style: new TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: const Color(0xffffffff),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class RecomendCarWidget extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => new _RecomendCarWidgetState();
+}
+
+class _RecomendCarWidgetState extends State {
+  int color_nuber_1 = 0xffff0000;
+  int color_nuber_2 = 0xff000000;
+  int color_nuber_3 = 0xff000000;
+  _toggle_color(type) {
+    setState(() {
+      if (type == 1) {
+        color_nuber_1 = 0xffff0000;
+        color_nuber_2 = 0xff000000;
+        color_nuber_3 = 0xff000000;
+      } else if (type == 2) {
+        color_nuber_1 = 0xff000000;
+        color_nuber_2 = 0xffff0000;
+        color_nuber_3 = 0xff000000;
+      } else {
+        color_nuber_1 = 0xff000000;
+        color_nuber_2 = 0xff000000;
+        color_nuber_3 = 0xffff0000;
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Container(
+        child: Column(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.all(10.0),
+              decoration: new BoxDecoration(
+                border: Border(
+                  left: BorderSide(
+                      width: 4.0, color: Colors.red, style: BorderStyle.solid),
+                ),
+              ),
+              child: Row(
+                children: <Widget>[
+                  new GestureDetector(
+                    onTap: () {
+                      _toggle_color(1);
+                    },
+                    child: Container(
+                      margin: EdgeInsets.fromLTRB(15.0, 0.0, 0.0, 0.0),
+                      child: Text(
+                        "短租",
+                        style: new TextStyle(
+                          fontSize: 16.0, //字体大小
+                          color: Color(color_nuber_1),
+                        ),
+                      ),
+                    ),
+                  ),
+                  new GestureDetector(
+                    onTap: () {
+                      _toggle_color(2);
+                    },
+                    child: Container(
+                      margin: EdgeInsets.fromLTRB(20.0, 0.0, 0.0, 0.0),
+                      child: Text(
+                        "长租",
+                        style: new TextStyle(
+                          fontSize: 16.0, //字体大小
+                          color: Color(color_nuber_2),
+                        ),
+                      ),
+                    ),
+                  ),
+                  new GestureDetector(
+                    onTap: () {
+                      _toggle_color(3);
+                    },
+                    child: Container(
+                      margin: EdgeInsets.fromLTRB(20.0, 0.0, 0.0, 0.0),
+                      child: Text(
+                        "网约车",
+                        style: new TextStyle(
+                          fontSize: 16.0, //字体大小
+                          color: Color(color_nuber_3),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            //图片
+            PhotoScroller()
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class PhotoScroller extends StatelessWidget {
+  List<String> photoUrls = [
+    'https://w.chesudi.com/static/img/DZ%20CRV@2x.490a1f8.png',
+    'https://w.chesudi.com/static/img/DZ xuanyi@2x.892229f.png',
+    'https://w.chesudi.com/static/img/DZ%20CRV@2x.490a1f8.png',
+    'https://w.chesudi.com/static/img/DZ%20CRV@2x.490a1f8.png',
+  ];
+  Widget _buildPhoto(BuildContext context, int index) {
+    var photo = photoUrls[index];
+    return Padding(
+      padding: const EdgeInsets.only(right: 16.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(4.0),
+        child: Container(
+          width: 220.0,
+          child: Column(
+            children: <Widget>[
+              Image.network(
+                photo,
+                width: 200.0,
+                height: 120.0,
+              ),
+              Text("本田CRV"),
+              Text("自排/SUV/5座1")
+            ],
+          ),
+          // child: Image.network(
+          //   photo,
+          //   width: 160.0,
+          //   height: 120.0,
+          //   fit: BoxFit.cover,
+          // ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox.fromSize(
+          size: const Size.fromHeight(170.0),
+          child: ListView.builder(
+            itemCount: photoUrls.length,
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.only(top: 8.0, left: 20.0),
+            itemBuilder: _buildPhoto,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+//_sliverBuilder
 // class FirstPage extends StatelessWidget {
 //   @override
 //   Widget build(BuildContext context) {

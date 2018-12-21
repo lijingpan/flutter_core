@@ -14,6 +14,7 @@ class WeatherWidget extends StatefulWidget {
 
 class WeatherState extends State<WeatherWidget> {
   WeatherData weather = WeatherData.empty();
+  int number=0xff000000;
   WeatherState() {
     _getWeather();
   }
