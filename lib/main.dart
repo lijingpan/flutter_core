@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_core/WeatherWidget.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'dart:io';
 import 'package:flutter/services.dart';
@@ -19,6 +18,31 @@ void main() {
   }
 }
 
+// class demoPage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('demoPage'),
+//       ),
+//       body: new GridView.count(
+//         primary: false,
+//         padding: const EdgeInsets.all(0.0),
+//         crossAxisSpacing: 0.0,
+//         crossAxisCount: 2,
+//         children: <Widget>[
+//           const Text('He\'d have you all unravel at the'),
+//           const Text('Heed not the rabble'),
+//           const Text('Sound of screams but the'),
+//           const Text('Who scream'),
+//           const Text('Revolution is coming...'),
+//           const Text('Revolution, they...'),
+//         ],
+//       ),
+//     );
+//   }
+// }
+
 class FistPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -29,6 +53,7 @@ class FistPage extends StatelessWidget {
             TBanner(),
             Home_Nav(),
             Container(
+              margin: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
               child: Text(
                 "推荐车型",
                 style: new TextStyle(
@@ -39,6 +64,7 @@ class FistPage extends StatelessWidget {
             ),
             RecomendCarWidget(),
             Container(
+              margin: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
               child: Text(
                 "推荐活动",
                 style: new TextStyle(
@@ -62,7 +88,7 @@ class TBanner extends StatelessWidget {
         children: [
           new Container(
               width: MediaQuery.of(context).size.width,
-              height: 200.0,
+              height: 220.0,
               child: Swiper(
                 itemBuilder: _swiperBuilder,
                 itemCount: 3,
@@ -106,7 +132,7 @@ class TBanner extends StatelessWidget {
           ),
           new Positioned(
             left: 20.0,
-            top: 175.0,
+            top: 200.0,
             right: 20,
             child: Material(
               borderRadius: BorderRadius.circular(4.0),
@@ -147,7 +173,7 @@ class TBanner extends StatelessWidget {
           ),
         ],
       ),
-      height: 280.0,
+      height: 310.0,
     );
   }
 
@@ -353,25 +379,54 @@ class PhotoScroller extends StatelessWidget {
       padding: const EdgeInsets.only(right: 16.0),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(4.0),
-        child: Container(
-          width: 220.0,
-          child: Column(
-            children: <Widget>[
-              Image.network(
-                photo,
-                width: 200.0,
-                height: 120.0,
+        child: Stack(
+          children: <Widget>[
+            Container(
+              width: 260.0,
+              decoration: new BoxDecoration(
+                  color: Color(0xfff0f0f0),
+                  border: Border.all(
+                      width: 1.0,
+                      color: Color(0xff999999),
+                      style: BorderStyle.solid)),
+              child: Column(
+                children: <Widget>[
+                  Image.network(
+                    photo,
+                    width: 190.0,
+                    height: 120.0,
+                  ),
+                    Wrap(
+                      children: <Widget>[
+                        Text("本田CRV"),
+                        Text("￥75"),
+                        Text("/日"),
+                      ],
+                    ),
+                    Text("自排/3厢/5座"),
+                ],
               ),
-              Text("本田CRV"),
-              Text("自排/SUV/5座1")
-            ],
-          ),
-          // child: Image.network(
-          //   photo,
-          //   width: 160.0,
-          //   height: 120.0,
-          //   fit: BoxFit.cover,
-          // ),
+            ),
+            Positioned(
+              left: 10.0,
+              top: 0.0,
+              child: Container(
+                width: 30.0,
+                decoration: new BoxDecoration(
+                  color: Color(0xffc7000b),
+                ),
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      "热",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    Text("门", style: TextStyle(color: Colors.white)),
+                  ],
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );
@@ -383,7 +438,7 @@ class PhotoScroller extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox.fromSize(
-          size: const Size.fromHeight(170.0),
+          size: const Size.fromHeight(180.0),
           child: ListView.builder(
             itemCount: photoUrls.length,
             scrollDirection: Axis.horizontal,
@@ -395,19 +450,6 @@ class PhotoScroller extends StatelessWidget {
     );
   }
 }
-
-//_sliverBuilder
-// class FirstPage extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(title: Text('找小姐姐要电话'),),
-//       body: Center(
-//         child: RouteButton(),
-//       ),
-//     );
-//   }
-// }
 
 // class RouteButton extends StatelessWidget {
 //   @override
