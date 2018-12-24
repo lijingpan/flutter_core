@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_core/shortdriving.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'dart:io';
+import 'package:flutter/services.dart';
 
 //首页
 int _lastClickTime = 0;
@@ -10,13 +13,13 @@ class HomeScreen extends StatelessWidget {
     int nowTime = DateTime.now().microsecondsSinceEpoch;
     print(nowTime);
     print(nowTime - _lastClickTime);
-    if (_lastClickTime != 0 && nowTime - _lastClickTime  > 1500) {
+    if (_lastClickTime != 0 && nowTime - _lastClickTime > 1500) {
       print('1111');
       //return new Future.value(false);
       return new Future.value(true);
     } else {
       _lastClickTime = new DateTime.now().microsecondsSinceEpoch;
-       new Future.delayed(const Duration(milliseconds: 1500), () {
+      new Future.delayed(const Duration(milliseconds: 1500), () {
         _lastClickTime = 0;
       });
       Fluttertoast.showToast(
@@ -36,6 +39,7 @@ class HomeScreen extends StatelessWidget {
         onWillPop: doubleClickBack,
         child: Scaffold(
           body: SingleChildScrollView(
+            padding: EdgeInsets.all(0.0),
             child: Column(
               children: <Widget>[
                 home_banner(),
@@ -143,15 +147,23 @@ class home_banner extends StatelessWidget {
                 child: Row(
                   children: <Widget>[
                     Expanded(
-                      child: Column(
-                        children: <Widget>[
-                          Image.asset(
-                            "images/rentshortdrive.png",
-                            height: 60.0,
-                            width: 60.0,
-                          ),
-                          Text("短租自驾", textAlign: TextAlign.center),
-                        ],
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              new MaterialPageRoute(
+                                  builder: (context) => new ShortDriving()));
+                        },
+                        child: Column(
+                          children: <Widget>[
+                            Image.asset(
+                              "images/rentshortdrive.png",
+                              height: 60.0,
+                              width: 60.0,
+                            ),
+                            Text("短租自驾", textAlign: TextAlign.center),
+                          ],
+                        ),
                       ),
                     ),
                     Expanded(
