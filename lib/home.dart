@@ -579,10 +579,10 @@ class evaluate extends StatelessWidget {
           Container(
             alignment: Alignment.topLeft,
             margin: EdgeInsets.fromLTRB(20.0, 10.0, 5.0, 0.0),
-            height: 55.0,
+            height: 45.0,
             child: Text(
               "老板人很好老板人很好老板 老板人很好老板人很好老板 老板人很好老板人很好老板 老板人很好老板人很好老板 老板人很好老板人很好老板",
-              maxLines: 3,
+              maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
           ),
