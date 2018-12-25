@@ -27,7 +27,7 @@ class ShortDriving extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,
-          height: 520.0,
+          height: 535.0,
           child: Stack(
             children: <Widget>[
               Container(
@@ -38,21 +38,14 @@ class ShortDriving extends StatelessWidget {
                 top: 170.0,
                 right: 10.0,
                 child: Material(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(5.0),
                   elevation: 5.0,
                   child: Container(
+                    
                     alignment: Alignment.topLeft,
+                    
                     width: MediaQuery.of(context).size.width,
                     height: 350.0,
-                    decoration: new BoxDecoration(
-                      color: Colors.white,
-                      // borderRadius:
-                      //     new BorderRadius.all(new Radius.circular(8.0)),
-                      // border: Border.all(
-                      //     width: 1.0,
-                      //     color: Color(0xff999999),
-                      //     style: BorderStyle.solid)
-                    ),
                     child: ShortCar(),
                   ),
                 ),
@@ -321,30 +314,24 @@ class TakeDate extends StatelessWidget {
               ),
             ),
           ),
-          Expanded(
-            flex: 1,
-            child: Center(
-              child: Container(
-                  width: 45.0,
-                  height: 45.0,
-                  padding: EdgeInsets.only(top: 5.0),
-                  alignment: Alignment.center,
-                  decoration: new BoxDecoration(
-                      color: Colors.white,
-                      borderRadius:
-                          new BorderRadius.all(new Radius.circular(45.0)),
-                      border: Border.all(
-                          width: 1.5,
-                          color: Color(0xffc7000b),
-                          style: BorderStyle.solid)),
-                  child: Column(
-                    children: <Widget>[
-                      Text("10"),
-                      Text("天"),
-                    ],
-                  )),
-            ),
-          ),
+          Container(
+              width: 45.0,
+              height: 45.0,
+              padding: EdgeInsets.only(top: 5.0),
+              alignment: Alignment.center,
+              decoration: new BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: new BorderRadius.all(new Radius.circular(45.0)),
+                  border: Border.all(
+                      width: 1.5,
+                      color: Color(0xffc7000b),
+                      style: BorderStyle.solid)),
+              child: Column(
+                children: <Widget>[
+                  Text("10"),
+                  Text("天"),
+                ],
+              )),
           Expanded(
             flex: 2,
             child: Container(

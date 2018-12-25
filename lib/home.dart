@@ -635,7 +635,7 @@ class evaluate extends StatelessWidget {
     return new Container(
         width: MediaQuery.of(context).size.width,
         margin: EdgeInsets.only(left: 10.0, right: 10.0),
-        height: 280.0,
+        height: 290.0,
         child: Swiper(
           itemBuilder: _swiperBuilder,
           itemCount: 4,
