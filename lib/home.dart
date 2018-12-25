@@ -67,13 +67,30 @@ class HomeScreen extends StatelessWidget {
                 ),
                 hot_activity(),
                 Container(
+                  height: 30.0,
+                  width: MediaQuery.of(context).size.width,
                   margin: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-                  child: Text(
-                    "用户评价",
-                    style: new TextStyle(
-                      fontSize: 18.0, //字体大小
-                      fontWeight: FontWeight.bold, //字体粗细  粗体和正常
-                    ),
+                  child: Stack(
+                    children: <Widget>[
+                      Center(
+                        child: Text("用户评价",
+                            style: new TextStyle(
+                              fontSize: 18.0, //字体大小
+                              fontWeight: FontWeight.bold, //字体粗细  粗体和正常
+                            )),
+                      ),
+                      Positioned(
+                        right: 23.0,
+                        bottom: 0.0,
+                        child: Text("查看全部"),
+                      ),
+                      Positioned(
+                        right: 10.0,
+                        bottom: 5.0,
+                        child: Image.asset("images/content_leftarrow.png",
+                        width: 10.0,height: 10.0,),
+                      )
+                    ],
                   ),
                 ),
                 evaluate(),
@@ -472,19 +489,23 @@ class carScroller extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox.fromSize(
-          size: const Size.fromHeight(180.0),
-          child: ListView.builder(
-            itemCount: photoUrls.length,
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.only(top: 8.0, left: 20.0),
-            itemBuilder: _buildPhoto,
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      margin: EdgeInsets.only(left: 10.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox.fromSize(
+            size: const Size.fromHeight(180.0),
+            child: ListView.builder(
+              itemCount: photoUrls.length,
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.only(top: 8.0),
+              itemBuilder: _buildPhoto,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -529,13 +550,17 @@ class hot_activity extends StatelessWidget {
           ),
           child: Text("值得推荐的优惠活动"),
         ),
-        SizedBox.fromSize(
-          size: const Size.fromHeight(170.0),
-          child: ListView.builder(
-            itemCount: photoUrls.length,
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.only(top: 8.0, left: 20.0),
-            itemBuilder: _buildPhoto,
+        Container(
+          width: MediaQuery.of(context).size.width,
+          margin: EdgeInsets.only(left: 10.0),
+          child: SizedBox.fromSize(
+            size: const Size.fromHeight(170.0),
+            child: ListView.builder(
+              itemCount: photoUrls.length,
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.only(top: 8.0),
+              itemBuilder: _buildPhoto,
+            ),
           ),
         ),
       ],
@@ -554,7 +579,7 @@ class evaluate extends StatelessWidget {
   Widget _swiperBuilder(BuildContext context, int index) {
     var photo = photoUrls[index];
     return Container(
-      margin: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 30.0),
+      margin: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 30.0),
       decoration: new BoxDecoration(
           color: Color(0xfff0f0f0),
           borderRadius: new BorderRadius.all(new Radius.circular(3.0)),
@@ -609,6 +634,7 @@ class evaluate extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Container(
         width: MediaQuery.of(context).size.width,
+        margin: EdgeInsets.only(left: 10.0, right: 10.0),
         height: 280.0,
         child: Swiper(
           itemBuilder: _swiperBuilder,

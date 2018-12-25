@@ -4,28 +4,26 @@ class ShortDriving extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-          child: AppBar(
-            centerTitle: true,
-            elevation: 0,
-            leading: IconButton(
-                iconSize: 40,
-                icon: Icon(
-                  Icons.keyboard_arrow_left,
-                  color: Color(0xff181818),
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
-                }),
-            title: Text(
-              "短租自驾",
-              style: TextStyle(
-                color: Color(0xff181818),
-              ),
+      appBar: AppBar(
+        centerTitle: true,
+        elevation: 0,
+        leading: IconButton(
+            iconSize: 40,
+            icon: Icon(
+              Icons.keyboard_arrow_left,
+              color: Color(0xff8d8d8d),
             ),
-            backgroundColor: Colors.white,
+            onPressed: () {
+              Navigator.pop(context);
+            }),
+        title: Text(
+          "短租自驾",
+          style: TextStyle(
+            color: Color(0xff181818),
           ),
-          preferredSize: Size.fromHeight(45.0)),
+        ),
+        backgroundColor: Colors.white,
+      ),
       body: SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,
@@ -39,19 +37,24 @@ class ShortDriving extends StatelessWidget {
                 left: 10.0,
                 top: 170.0,
                 right: 10.0,
-                child: Container(
-                  alignment: Alignment.topLeft,
-                  width: MediaQuery.of(context).size.width,
-                  height: 350.0,
-                  decoration: new BoxDecoration(
+                child: Material(
+                  borderRadius: BorderRadius.circular(10.0),
+                  elevation: 5.0,
+                  child: Container(
+                    alignment: Alignment.topLeft,
+                    width: MediaQuery.of(context).size.width,
+                    height: 350.0,
+                    decoration: new BoxDecoration(
                       color: Colors.white,
-                      borderRadius:
-                          new BorderRadius.all(new Radius.circular(8.0)),
-                      border: Border.all(
-                          width: 1.0,
-                          color: Color(0xff999999),
-                          style: BorderStyle.solid)),
-                  child: ShortCar(),
+                      // borderRadius:
+                      //     new BorderRadius.all(new Radius.circular(8.0)),
+                      // border: Border.all(
+                      //     width: 1.0,
+                      //     color: Color(0xff999999),
+                      //     style: BorderStyle.solid)
+                    ),
+                    child: ShortCar(),
+                  ),
                 ),
               )
             ],
@@ -72,23 +75,31 @@ class ShortCar extends StatelessWidget {
           TakeCar(), //取车信息
           ReturnCar(), //还车信息
           TakeDate(), //取还车时间
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: 45.0,
-            alignment: Alignment.center,
-            margin: EdgeInsets.fromLTRB(30.0, 20.0, 30.0, 0.0),
-            decoration: new BoxDecoration(
-                color: Color(0xffc7000b),
-                borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
-                border: Border.all(
-                    width: 1.5,
+          InkWell(
+              onTap: () {
+                //print("1111");
+              },
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 40.0,
+                alignment: Alignment.center,
+                margin: EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 0.0),
+                decoration: new BoxDecoration(
                     color: Color(0xffc7000b),
-                    style: BorderStyle.solid)),
-            child: Text("立即选车",style: TextStyle(
-              color: Colors.white,
-              fontSize: 18.0,
-            ),),
-          )
+                    borderRadius:
+                        new BorderRadius.all(new Radius.circular(10.0)),
+                    border: Border.all(
+                        width: 1.5,
+                        color: Color(0xffc7000b),
+                        style: BorderStyle.solid)),
+                child: Text(
+                  "立即选车",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16.0,
+                  ),
+                ),
+              ))
         ],
       ),
     );
@@ -109,7 +120,7 @@ class TakeCar extends StatelessWidget {
             style: TextStyle(
               color: Color(0xff262627),
               fontWeight: FontWeight.w700,
-              fontSize: 18.0,
+              fontSize: 16.0,
             ),
           ),
         ),
@@ -118,12 +129,20 @@ class TakeCar extends StatelessWidget {
             Expanded(
               child: Padding(
                 padding: EdgeInsets.only(left: 10.0),
-                child: Text("取车地点"),
+                child: Text(
+                  "取车地点",
+                  style: TextStyle(
+                    color: Color(0xff8d8d8d),
+                  ),
+                ),
               ),
             ),
             Padding(
               padding: EdgeInsets.only(right: 10.0),
-              child: Text("送车上门"),
+              child: Text("送车上门",
+                  style: TextStyle(
+                    color: Color(0xff8d8d8d),
+                  )),
             ),
           ],
         ),
@@ -142,7 +161,7 @@ class TakeCar extends StatelessWidget {
                   child: Text("上海",
                       style: TextStyle(
                         color: Color(0xff262627),
-                        fontSize: 18.0,
+                        fontSize: 16.0,
                       ))),
               Padding(
                 padding: EdgeInsets.only(right: 10.0),
@@ -157,13 +176,13 @@ class TakeCar extends StatelessWidget {
                   child: Text("虹桥火车站接送点",
                       style: TextStyle(
                         color: Color(0xff262627),
-                        fontSize: 18.0,
+                        fontSize: 16.0,
                       )),
                 ),
               ),
               Padding(
                 padding: EdgeInsets.only(right: 10.0),
-                child: Switch(value: true, onChanged: (bool val) {}),
+                child: Switch(value: false, onChanged: (bool val) {}),
               ),
             ],
           ),
@@ -183,13 +202,19 @@ class ReturnCar extends StatelessWidget {
           children: <Widget>[
             Expanded(
               child: Padding(
-                padding: EdgeInsets.only(left: 10.0,top: 5.0),
-                child: Text("还车地点"),
+                padding: EdgeInsets.only(left: 10.0, top: 5.0),
+                child: Text("还车地点",
+                    style: TextStyle(
+                      color: Color(0xff8d8d8d),
+                    )),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(right: 10.0,top: 5.0),
-              child: Text("上门取车"),
+              padding: EdgeInsets.only(right: 10.0, top: 5.0),
+              child: Text("上门取车",
+                  style: TextStyle(
+                    color: Color(0xff8d8d8d),
+                  )),
             ),
           ],
         ),
@@ -208,7 +233,7 @@ class ReturnCar extends StatelessWidget {
                   child: Text("上海",
                       style: TextStyle(
                         color: Color(0xff262627),
-                        fontSize: 18.0,
+                        fontSize: 16.0,
                       ))),
               Padding(
                 padding: EdgeInsets.only(right: 10.0),
@@ -223,13 +248,13 @@ class ReturnCar extends StatelessWidget {
                   child: Text("虹桥火车站接送点",
                       style: TextStyle(
                         color: Color(0xff262627),
-                        fontSize: 18.0,
+                        fontSize: 16.0,
                       )),
                 ),
               ),
               Padding(
                 padding: EdgeInsets.only(right: 10.0),
-                child: Switch(value: true, onChanged: (bool val) {}),
+                child: Switch(value: false, onChanged: (bool val) {}),
               ),
             ],
           ),
@@ -243,88 +268,135 @@ class ReturnCar extends StatelessWidget {
 class TakeDate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        Column(
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Padding(
-                    padding: EdgeInsets.all(5.0), child: Text("取车时间")),
-                Padding(
-                    padding: EdgeInsets.only(left: 20.0), child: Text("周三")),
-              ],
+    return Container(
+      margin: EdgeInsets.only(top: 10.0),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            flex: 2,
+            child: Container(
+              alignment: Alignment.topLeft,
+              height: 45.0,
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.only(left: 10.0),
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text("取车时间",
+                              style: TextStyle(
+                                color: Color(0xff8d8d8d),
+                              )),
+                        ),
+                        Expanded(
+                            child: Text("周三",
+                                style: TextStyle(
+                                  color: Color(0xff8d8d8d),
+                                )))
+                      ],
+                    ),
+                  ),
+                  Container(
+                      padding: EdgeInsets.only(left: 10.0, top: 5.0),
+                      child: Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: Text("12-16",
+                                style: TextStyle(
+                                  color: Color(0xff262627),
+                                  fontSize: 16.0,
+                                )),
+                          ),
+                          Expanded(
+                            child: Text("10:00",
+                                style: TextStyle(
+                                  color: Color(0xff262627),
+                                  fontSize: 16.0,
+                                )),
+                          ),
+                        ],
+                      )),
+                ],
+              ),
             ),
-            Row(
-              children: <Widget>[
-                Padding(
-                    padding: EdgeInsets.fromLTRB(15.0, 5.0, 10.0, 0.0),
-                    child: Text("12-26",
-                        style: TextStyle(
-                          color: Color(0xff262627),
-                          fontSize: 18.0,
-                        ))),
-                Padding(
-                    padding: EdgeInsets.fromLTRB(20.0, 5.0, 10.0, 0.0),
-                    child: Text("10:00",
-                        style: TextStyle(
-                          color: Color(0xff262627),
-                          fontSize: 18.0,
-                        ))),
-              ],
+          ),
+          Expanded(
+            flex: 1,
+            child: Center(
+              child: Container(
+                  width: 45.0,
+                  height: 45.0,
+                  padding: EdgeInsets.only(top: 5.0),
+                  alignment: Alignment.center,
+                  decoration: new BoxDecoration(
+                      color: Colors.white,
+                      borderRadius:
+                          new BorderRadius.all(new Radius.circular(45.0)),
+                      border: Border.all(
+                          width: 1.5,
+                          color: Color(0xffc7000b),
+                          style: BorderStyle.solid)),
+                  child: Column(
+                    children: <Widget>[
+                      Text("10"),
+                      Text("天"),
+                    ],
+                  )),
             ),
-          ],
-        ),
-        Container(
-            width: 45.0,
-            height: 45.0,
-            padding: EdgeInsets.only(top: 2.0),
-            // margin: EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
-            alignment: Alignment.center,
-            decoration: new BoxDecoration(
-                color: Colors.white,
-                borderRadius: new BorderRadius.all(new Radius.circular(45.0)),
-                border: Border.all(
-                    width: 1.5,
-                    color: Color(0xffc7000b),
-                    style: BorderStyle.solid)),
-            child: Column(
-              children: <Widget>[
-                Text("2"),
-                Text("天"),
-              ],
-            )),
-        Column(
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Padding(
-                    padding: EdgeInsets.all(5.0), child: Text("取车时间")),
-                Padding(
-                    padding: EdgeInsets.only(left: 20.0), child: Text("周三")),
-              ],
+          ),
+          Expanded(
+            flex: 2,
+            child: Container(
+              height: 45.0,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.only(left: 10.0),
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text("还车时间",
+                              style: TextStyle(
+                                color: Color(0xff8d8d8d),
+                              )),
+                        ),
+                        Expanded(
+                            child: Text("周三",
+                                style: TextStyle(
+                                  color: Color(0xff8d8d8d),
+                                )))
+                      ],
+                    ),
+                  ),
+                  Container(
+                      padding: EdgeInsets.only(left: 10.0, top: 5.0),
+                      child: Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: Text("12-16",
+                                style: TextStyle(
+                                  color: Color(0xff262627),
+                                  fontSize: 16.0,
+                                )),
+                          ),
+                          Expanded(
+                            child: Text("10:00",
+                                style: TextStyle(
+                                  color: Color(0xff262627),
+                                  fontSize: 16.0,
+                                )),
+                          ),
+                        ],
+                      )),
+                ],
+              ),
             ),
-            Row(
-              children: <Widget>[
-                Padding(
-                    padding: EdgeInsets.fromLTRB(15.0, 5.0, 10.0, 0.0),
-                    child: Text("12-26",
-                        style: TextStyle(
-                          color: Color(0xff262627),
-                          fontSize: 18.0,
-                        ))),
-                Padding(
-                    padding: EdgeInsets.fromLTRB(20.0, 5.0, 10.0, 0.0),
-                    child: Text("10:00",
-                        style: TextStyle(
-                          color: Color(0xff262627),
-                          fontSize: 18.0,
-                        ))),
-              ],
-            ),
-          ],
-        )
-      ],
+          ),
+        ],
+      ),
     );
   }
 }

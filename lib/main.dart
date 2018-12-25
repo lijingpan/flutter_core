@@ -9,14 +9,14 @@ import 'package:url_launcher/url_launcher.dart';
 void main() {
   runApp(MaterialApp(
     title: '车速递租车',
-    home: FistPage(),
+    home:FistPage(),
   ));
 
-  if (Platform.isAndroid) {
-    SystemUiOverlayStyle systemUiOverlayStyle =
-        SystemUiOverlayStyle(statusBarColor: Colors.transparent);
-    SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
-  }
+  // if (Platform.isAndroid) {
+  //   SystemUiOverlayStyle systemUiOverlayStyle =
+  //       SystemUiOverlayStyle(statusBarColor: Colors.transparent);
+  //   SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+  // }
 }
 
 //主入口
