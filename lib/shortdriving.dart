@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class ShortDriving extends StatelessWidget {
+ 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        brightness: Brightness.dark,
         elevation: 0,
         leading: IconButton(
             iconSize: 40,
@@ -35,17 +39,15 @@ class ShortDriving extends StatelessWidget {
               ),
               Positioned(
                 left: 10.0,
-                top: 170.0,
+                top: 160.0,
                 right: 10.0,
                 child: Material(
                   borderRadius: BorderRadius.circular(5.0),
                   elevation: 5.0,
                   child: Container(
-                    
                     alignment: Alignment.topLeft,
-                    
                     width: MediaQuery.of(context).size.width,
-                    height: 350.0,
+                    height: 330.0,
                     child: ShortCar(),
                   ),
                 ),
@@ -76,7 +78,7 @@ class ShortCar extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 height: 40.0,
                 alignment: Alignment.center,
-                margin: EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 0.0),
+                margin: EdgeInsets.fromLTRB(30.0, 25.0, 30.0, 0.0),
                 decoration: new BoxDecoration(
                     color: Color(0xffc7000b),
                     borderRadius:

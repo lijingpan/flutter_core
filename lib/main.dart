@@ -12,11 +12,11 @@ void main() {
     home:FistPage(),
   ));
 
-  if (Platform.isAndroid) {
-    SystemUiOverlayStyle systemUiOverlayStyle =
-        SystemUiOverlayStyle(statusBarColor: Colors.transparent);
-    SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
-  }
+  // if (Platform.isAndroid) {
+  //   SystemUiOverlayStyle systemUiOverlayStyle =
+  //       SystemUiOverlayStyle(statusBarColor: Colors.transparent);
+  //   SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+  // }
 }
 
 //主入口
